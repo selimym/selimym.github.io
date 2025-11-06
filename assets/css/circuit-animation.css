@@ -1,0 +1,151 @@
+/**
+ * Circuit Animation Styles
+ * Styling for the homepage circuit board animation
+ */
+
+/* Animation container - covers full viewport behind content */
+#circuit-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: #0a0e17;
+}
+
+#circuit-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Homepage hero section with animation */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  background: rgba(10, 14, 23, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 3rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 217, 255, 0.1);
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #00d9ff;
+  font-weight: 600;
+}
+
+.hero-content .subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+  font-weight: 400;
+}
+
+.hero-content .description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+}
+
+.hero-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-links a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: rgba(0, 217, 255, 0.1);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  border-radius: 4px;
+  color: #00d9ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.hero-links a:hover {
+  background: rgba(0, 217, 255, 0.2);
+  border-color: #00d9ff;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-content .description {
+    font-size: 1rem;
+  }
+
+  .hero-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-links a {
+    text-align: center;
+  }
+}
+
+/* Ensure the animation works well with docsify */
+body.close .sidebar {
+  transform: translateX(-300px);
+}
+
+/* Adjust main content to work with animation background */
+.markdown-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 217, 255, 0.5);
+}
