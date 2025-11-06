@@ -7,11 +7,28 @@
     content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 
   <!-- Replace with your own title and description. -->
-  <title>Awesome Docsify Site</title>
-  <meta name="description" content="An awesome docsify site for publishing some content on the web.">
+  <title>Selim Yahia-Messaoud</title>
+  <meta name="description" content="Senior Engineer at Qualcomm. Building scalable automation systems and backend solutions.">
 
   <!-- Default Theme (see https://docsify.js.org/#/themes) -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- Custom Styles for Minimalistic Look -->
+  <style>
+    :root {
+      --theme-color: #2c3e50;
+      --theme-color-dark: #1a252f;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+    .sidebar {
+      background-color: #fafafa;
+    }
+    .sidebar-nav > ul > li > a {
+      font-weight: 500;
+    }
+  </style>
 
 </head>
 
@@ -21,20 +38,19 @@
   <script>
     // Docsify Configuration (see https://docsify.js.org/#/configuration)
     window.$docsify = {
-      name: 'Simple Docsify Template',
+      name: 'Selim Yahia-Messaoud',
+      repo: 'https://github.com/selimym',
 
       // Sidebar Configuration
       auto2top: true,
       loadSidebar: true,
       maxLevel: 0,
-      // Set subMaxLevel to 0 to remove automatic display of page table of contents (TOC) in Sidebar
-      subMaxLevel: 3,
+      subMaxLevel: 2,
 
       // Search Plugin Configuration
       search: {
         placeholder: 'Type to search',
         noData: 'No matches found.',
-        // Headline depth, 1 - 6
         depth: 2,
       }
     };
