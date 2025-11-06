@@ -1,6 +1,6 @@
 /**
- * Circuit Board Particle Flow Animation
- * A minimalistic canvas animation featuring circuit traces and flowing particles
+ * Circuit Board Particle Flow Animation - Realistic PCB Traces
+ * Canvas animation featuring realistic circuit board traces with right angles
  */
 
 (function() {
@@ -10,67 +10,110 @@
   let particles = [];
   let circuits = [];
   let animationId;
-  let mouseX = 0;
-  let mouseY = 0;
 
   // Configuration
   const config = {
-    particleCount: 60,
-    particleSpeed: 0.5,
-    particleSize: 2,
+    particleCount: 50,
+    particleSpeed: 0.8,
+    particleSize: 2.5,
     particleColor: '#00d9ff',
     particleGlow: true,
-    circuitColor: 'rgba(0, 217, 255, 0.2)',
-    circuitLineWidth: 1,
-    connectionDistance: 150,
+    circuitColor: 'rgba(0, 217, 255, 0.25)',
+    circuitLineWidth: 2,
+    connectionDistance: 120,
     backgroundColor: '#0a0e17',
-    glowIntensity: 10
+    glowIntensity: 15
   };
 
-  // Circuit path class
+  // Circuit path class with realistic PCB-style traces
   class Circuit {
     constructor() {
       this.points = [];
-      this.segments = Math.floor(Math.random() * 3) + 2;
-      this.orientation = Math.random() > 0.5 ? 'horizontal' : 'vertical';
-
+      this.segments = Math.floor(Math.random() * 4) + 3; // 3-6 segments
       this.generate();
     }
 
     generate() {
       const w = canvas.width;
       const h = canvas.height;
+      const margin = 100;
 
-      if (this.orientation === 'horizontal') {
-        let y = Math.random() * h;
-        let x = 0;
-        this.points.push({ x, y });
+      // Start from a random edge
+      const startEdge = Math.floor(Math.random() * 4); // 0=top, 1=right, 2=bottom, 3=left
+      let x, y, direction;
 
-        for (let i = 0; i < this.segments; i++) {
-          x += (w / this.segments) + (Math.random() - 0.5) * 100;
-          if (Math.random() > 0.7) {
-            y += (Math.random() - 0.5) * 100;
-          }
-          this.points.push({ x, y });
+      switch(startEdge) {
+        case 0: // top
+          x = margin + Math.random() * (w - 2 * margin);
+          y = margin;
+          direction = 'down';
+          break;
+        case 1: // right
+          x = w - margin;
+          y = margin + Math.random() * (h - 2 * margin);
+          direction = 'left';
+          break;
+        case 2: // bottom
+          x = margin + Math.random() * (w - 2 * margin);
+          y = h - margin;
+          direction = 'up';
+          break;
+        case 3: // left
+          x = margin;
+          y = margin + Math.random() * (h - 2 * margin);
+          direction = 'right';
+          break;
+      }
+
+      this.points.push({ x, y });
+
+      // Generate path with RIGHT ANGLES ONLY (like real PCB traces)
+      for (let i = 0; i < this.segments; i++) {
+        const segmentLength = 80 + Math.random() * 150;
+
+        // Move in current direction
+        switch(direction) {
+          case 'right':
+            x += segmentLength;
+            break;
+          case 'left':
+            x -= segmentLength;
+            break;
+          case 'up':
+            y -= segmentLength;
+            break;
+          case 'down':
+            y += segmentLength;
+            break;
         }
-      } else {
-        let x = Math.random() * w;
-        let y = 0;
+
+        // Keep within bounds
+        x = Math.max(margin, Math.min(w - margin, x));
+        y = Math.max(margin, Math.min(h - margin, y));
+
         this.points.push({ x, y });
 
-        for (let i = 0; i < this.segments; i++) {
-          y += (h / this.segments) + (Math.random() - 0.5) * 100;
-          if (Math.random() > 0.7) {
-            x += (Math.random() - 0.5) * 100;
-          }
-          this.points.push({ x, y });
+        // Change direction (90 degree turn only)
+        if (i < this.segments - 1) {
+          const possibleDirections = {
+            'right': ['up', 'down'],
+            'left': ['up', 'down'],
+            'up': ['left', 'right'],
+            'down': ['left', 'right']
+          };
+
+          const options = possibleDirections[direction];
+          direction = options[Math.floor(Math.random() * options.length)];
         }
       }
     }
 
     draw() {
+      // Draw main trace
       ctx.strokeStyle = config.circuitColor;
       ctx.lineWidth = config.circuitLineWidth;
+      ctx.lineCap = 'square'; // Square ends like real PCB traces
+      ctx.lineJoin = 'miter'; // Sharp corners
       ctx.beginPath();
 
       for (let i = 0; i < this.points.length; i++) {
@@ -84,20 +127,34 @@
 
       ctx.stroke();
 
-      // Draw nodes at circuit points
-      this.points.forEach(point => {
+      // Draw pads/vias at connection points
+      this.points.forEach((point, index) => {
+        // Start and end get larger pads
+        const isTerminal = index === 0 || index === this.points.length - 1;
+        const padSize = isTerminal ? 4 : 3;
+
         ctx.fillStyle = config.circuitColor;
         ctx.beginPath();
-        ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+        ctx.arc(point.x, point.y, padSize, 0, Math.PI * 2);
         ctx.fill();
+
+        // Add outer ring for terminals
+        if (isTerminal) {
+          ctx.strokeStyle = config.circuitColor;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, padSize + 2, 0, Math.PI * 2);
+          ctx.stroke();
+        }
       });
     }
 
     // Get a point along the circuit path
     getPointOnPath(t) {
-      const segmentIndex = Math.floor(t * (this.points.length - 1));
+      const totalSegments = this.points.length - 1;
+      const segmentIndex = Math.floor(t * totalSegments);
       const nextIndex = Math.min(segmentIndex + 1, this.points.length - 1);
-      const segmentT = (t * (this.points.length - 1)) - segmentIndex;
+      const segmentT = (t * totalSegments) - segmentIndex;
 
       const p1 = this.points[segmentIndex];
       const p2 = this.points[nextIndex];
@@ -109,14 +166,14 @@
     }
   }
 
-  // Particle class
+  // Particle class (electrons flowing through traces)
   class Particle {
     constructor(circuit) {
       this.circuit = circuit;
       this.progress = Math.random();
-      this.speed = config.particleSpeed * (0.5 + Math.random() * 0.5);
-      this.size = config.particleSize * (0.5 + Math.random());
-      this.opacity = 0.5 + Math.random() * 0.5;
+      this.speed = config.particleSpeed * (0.7 + Math.random() * 0.6);
+      this.size = config.particleSize * (0.8 + Math.random() * 0.4);
+      this.opacity = 0.6 + Math.random() * 0.4;
     }
 
     update() {
@@ -148,10 +205,22 @@
     }
   }
 
+  // Check if we're on the homepage
+  function isHomepage() {
+    const hash = window.location.hash;
+    return hash === '' || hash === '#/' || hash === '#/home';
+  }
+
   // Initialize canvas
   function initCanvas() {
-    const container = document.getElementById('circuit-canvas-container');
-    if (!container) return false;
+    if (!isHomepage()) return false;
+
+    let container = document.getElementById('circuit-canvas-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'circuit-canvas-container';
+      document.body.appendChild(container);
+    }
 
     canvas = document.getElementById('circuit-canvas');
     if (!canvas) {
@@ -164,9 +233,20 @@
     resizeCanvas();
 
     window.addEventListener('resize', resizeCanvas);
-    canvas.addEventListener('mousemove', handleMouseMove);
 
     return true;
+  }
+
+  // Remove canvas when leaving homepage
+  function cleanupCanvas() {
+    const container = document.getElementById('circuit-canvas-container');
+    if (container) {
+      container.remove();
+    }
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
   }
 
   // Resize canvas
@@ -176,7 +256,8 @@
 
     // Regenerate circuits on resize
     circuits = [];
-    for (let i = 0; i < 8; i++) {
+    const numCircuits = Math.min(12, Math.floor((canvas.width + canvas.height) / 150));
+    for (let i = 0; i < numCircuits; i++) {
       circuits.push(new Circuit());
     }
 
@@ -184,12 +265,6 @@
     particles.forEach(particle => {
       particle.circuit = circuits[Math.floor(Math.random() * circuits.length)];
     });
-  }
-
-  // Handle mouse movement
-  function handleMouseMove(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
   }
 
   // Initialize particles
@@ -203,6 +278,11 @@
 
   // Animation loop
   function animate() {
+    if (!isHomepage()) {
+      cleanupCanvas();
+      return;
+    }
+
     // Clear canvas with background color
     ctx.fillStyle = config.backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -224,8 +304,6 @@
 
   // Draw connections between nearby particles
   function drawConnections() {
-    ctx.globalAlpha = 0.15;
-
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -236,7 +314,7 @@
           const opacity = 1 - (distance / config.connectionDistance);
           ctx.strokeStyle = config.particleColor;
           ctx.lineWidth = 0.5;
-          ctx.globalAlpha = opacity * 0.15;
+          ctx.globalAlpha = opacity * 0.2;
 
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
@@ -252,7 +330,6 @@
   // Initialize
   function init() {
     if (!initCanvas()) {
-      console.warn('Circuit animation container not found');
       return;
     }
 
@@ -260,17 +337,24 @@
     animate();
   }
 
+  // Handle route changes
+  window.addEventListener('hashchange', () => {
+    if (isHomepage() && !animationId) {
+      init();
+    } else if (!isHomepage() && animationId) {
+      cleanupCanvas();
+    }
+  });
+
   // Start when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(init, 100); // Small delay to ensure docsify is ready
+    });
   } else {
-    init();
+    setTimeout(init, 100);
   }
 
   // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-  });
+  window.addEventListener('beforeunload', cleanupCanvas);
 })();
