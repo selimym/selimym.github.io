@@ -72,10 +72,18 @@
     </div>
 
     <!-- Right: SoC die floorplan illustration -->
-    <div class="hidden md:flex justify-center items-center">
+    <div class="hidden md:flex justify-center items-center relative" id="chip-wrapper">
+      <div class="chip-halo" aria-hidden="true"></div>
+      <!-- Chip hover info panel -->
+      <div id="chip-panel" class="chip-panel" aria-hidden="true" role="region" aria-label="Project info">
+        <div class="chip-panel-tag" id="cp-tag"></div>
+        <div class="chip-panel-title" id="cp-title"></div>
+        <div class="chip-panel-desc" id="cp-desc"></div>
+        <a id="cp-link" class="chip-panel-cue" href="#" target="_blank" rel="noopener noreferrer">click to view →</a>
+      </div>
       <svg
         viewBox="0 0 520 480"
-        class="w-[420px] h-[386px] text-accent opacity-[0.22]"
+        class="w-full max-w-[420px] h-auto text-accent" style="opacity:0.55"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -84,6 +92,18 @@
           <style>
             .lbl { font-family: 'JetBrains Mono', monospace; fill: currentColor; }
           </style>
+          <linearGradient id="shimmer-grad" x1="-150" y1="0" x2="150" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F59E0B" stop-opacity="0"/>
+            <stop offset="50%"  stop-color="#F59E0B" stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+            <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              from="-520 0"
+              to="520 0"
+              dur="3.8s"
+              repeatCount="indefinite"/>
+          </linearGradient>
         </defs>
 
         <!-- ── PACKAGE ── -->
@@ -334,6 +354,27 @@
         <text x="372" y="377" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">ATTESTATION · TRUST ZONE</text>
         <text x="372" y="389" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">SEP · ANTI-ROLLBACK</text>
 
+        <!-- ── INTERACTIVE OVERLAY RECTS ── -->
+        <rect class="chip-overlay" data-project="cpu"     role="button" tabindex="0"
+          x="68"  y="68"  width="115" height="115"
+          fill="url(#shimmer-grad)"
+          aria-label="CPU block — chip design article"/>
+        <rect class="chip-overlay" data-project="neural"  role="button" tabindex="0"
+          x="348" y="68"  width="104" height="115"
+          fill="url(#shimmer-grad)"
+          aria-label="ML for drug discovery — research paper"/>
+        <rect class="chip-overlay" data-project="io"      role="button" tabindex="0"
+          x="68"  y="278" width="118" height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="Text-to-SQL — GitHub project"/>
+        <rect class="chip-overlay" data-project="fabric"  role="button" tabindex="0"
+          x="191" y="278" width="95"  height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="URL Shortener — GitHub project"/>
+        <rect class="chip-overlay" data-project="enclave" role="button" tabindex="0"
+          x="291" y="278" width="161" height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="Data Privacy Dystopia — game"/>
       </svg>
     </div>
   </div>
@@ -349,4 +390,188 @@
   .social-link {
     @apply flex items-center gap-2 text-sm text-muted hover:text-text transition-colors;
   }
+
+  .chip-halo {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, #F59E0B18 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 8px;
+  }
+
+  .chip-overlay {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .chip-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(-50%) translateX(12px);
+    width: 200px;
+    background: #18181B;
+    border: 1px solid #27272A;
+    border-left: 2px solid #F59E0B;
+    border-radius: 6px;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 10;
+  }
+  .chip-panel.chip-panel--visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    pointer-events: auto;
+  }
+  .chip-panel-tag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #F59E0B;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .chip-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FAFAFA;
+    margin-bottom: 6px;
+  }
+  .chip-panel-desc {
+    font-size: 11px;
+    color: #71717A;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .chip-panel-cue {
+    font-size: 10px;
+    color: #F59E0B;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: block;
+  }
+  .chip-panel-cue:hover { text-decoration: underline; }
 </style>
+
+<script>
+  const PROJECTS: Record<string, { tag: string; title: string; desc: string; url: string }> = {
+    neural: {
+      tag: 'NEURAL ENGINE · RESEARCH',
+      title: 'ML for drug discovery',
+      desc: 'IEEE paper on structured pruning for efficient inference.',
+      url: 'https://ieeexplore.ieee.org/document/11106423',
+    },
+    io: {
+      tag: 'I/O · PROJECT',
+      title: 'Text-to-SQL',
+      desc: 'Natural language to SQL query engine.',
+      url: 'https://github.com/selimym/text2sql',
+    },
+    fabric: {
+      tag: 'FABRIC · PROJECT',
+      title: 'URL Shortener',
+      desc: 'Custom URL shortening service.',
+      url: 'https://github.com/selimym/url_shortener',
+    },
+    enclave: {
+      tag: 'SECURE ENCLAVE · GAME',
+      title: 'Data Privacy Dystopia',
+      desc: 'A game about data surveillance and privacy.',
+      url: 'https://selimym.github.io/data_privacy_distopia',
+    },
+    cpu: {
+      tag: 'CPU · EXTERNAL ARTICLE',
+      title: 'Designing Circuits with EDA (not my blog)',
+      desc: 'More background about what I do from Asianometry, a great youtube channel.',
+      url: 'https://www.asianometry.com/p/designing-billions-of-circuits-with',
+    },
+  };
+
+  const panel    = document.getElementById('chip-panel')!;
+  const wrapper  = document.getElementById('chip-wrapper')!;
+  const overlays = document.querySelectorAll<SVGRectElement>('.chip-overlay');
+
+  function showPanel(projectKey: string, rectEl: SVGRectElement) {
+    const p = PROJECTS[projectKey];
+    if (!p) return;
+    (document.getElementById('cp-tag')   as HTMLElement).textContent = p.tag;
+    (document.getElementById('cp-title') as HTMLElement).textContent = p.title;
+    (document.getElementById('cp-desc')  as HTMLElement).textContent = p.desc;
+    const link = document.getElementById('cp-link') as HTMLAnchorElement;
+    if (p.url) {
+      link.href = p.url;
+      link.style.display = 'block';
+    } else {
+      link.style.display = 'none';
+    }
+
+    // Position panel next to the hovered block
+    const wrapperBounds = wrapper.getBoundingClientRect();
+    const blockBounds   = rectEl.getBoundingClientRect();
+    const blockCenterY  = blockBounds.top  + blockBounds.height / 2 - wrapperBounds.top;
+    const panelLeft     = blockBounds.left - wrapperBounds.left - panel.offsetWidth - 8;
+    panel.style.top  = `${blockCenterY}px`;
+    panel.style.left = `${panelLeft}px`;
+
+    panel.classList.add('chip-panel--visible');
+    panel.setAttribute('aria-hidden', 'false');
+  }
+
+  function hidePanel() {
+    panel.classList.remove('chip-panel--visible');
+    panel.setAttribute('aria-hidden', 'true');
+  }
+
+  overlays.forEach(rect => {
+    const proj = (rect as unknown as HTMLElement).dataset.project ?? '';
+
+    // Mouse
+    rect.addEventListener('mouseenter', () => {
+      rect.style.fill = '#F59E0B33';
+      showPanel(proj, rect);
+    });
+    rect.addEventListener('mouseleave', (e: MouseEvent) => {
+      rect.style.fill = 'url(#shimmer-grad)';
+      // Hide unless mouse moved to the info panel
+      const to = e.relatedTarget as Node | null;
+      if (to !== panel && !panel.contains(to)) {
+        hidePanel();
+      }
+    });
+
+    // Keyboard
+    rect.addEventListener('focus', () => {
+      rect.style.fill = '#F59E0B33';
+      showPanel(proj, rect);
+    });
+    rect.addEventListener('blur', () => {
+      rect.style.fill = 'url(#shimmer-grad)';
+      hidePanel();
+    });
+
+    // Click / Enter / Space → open URL
+    const openUrl = () => {
+      const url = PROJECTS[proj]?.url;
+      if (url) window.open(url, '_blank', 'noopener,noreferrer');
+    };
+    rect.addEventListener('click', openUrl);
+    rect.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openUrl();
+      }
+    });
+  });
+
+  // Hide when mouse leaves the panel unless moving to an overlay rect
+  panel.addEventListener('mouseleave', (e: MouseEvent) => {
+    const to = e.relatedTarget as Element | null;
+    const goingToRect = to && (to as SVGRectElement).classList?.contains('chip-overlay');
+    if (!goingToRect) hidePanel();
+  });
+
+  // Fallback: hide when mouse leaves the entire wrapper
+  wrapper.addEventListener('mouseleave', hidePanel);
+</script>

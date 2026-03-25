@@ -18,3 +18,10 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# Superpowers brainstorm artifacts
+.superpowers/
+
+# Playwright output
+test-results/
+playwright-report/
