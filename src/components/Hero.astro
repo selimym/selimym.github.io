@@ -71,74 +71,269 @@
       </div>
     </div>
 
-    <!-- Right: IC chip illustration -->
+    <!-- Right: SoC die floorplan illustration -->
     <div class="hidden md:flex justify-center items-center">
       <svg
-        viewBox="-8 -8 256 256"
-        class="w-[340px] h-[340px] text-accent opacity-[0.14]"
+        viewBox="0 0 520 480"
+        class="w-[420px] h-[386px] text-accent opacity-[0.22]"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <!-- Outer package with pin-1 chamfer at top-left -->
-        <path d="M28 10 L230 10 L230 230 L10 230 L10 28 Z" stroke="currentColor" stroke-width="1.5"/>
+        <defs>
+          <style>
+            .lbl { font-family: 'JetBrains Mono', monospace; fill: currentColor; }
+          </style>
+        </defs>
 
-        <!-- Pin 1 marker dot -->
-        <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.9"/>
+        <!-- ── PACKAGE ── -->
+        <path d="M42 18 L502 18 L502 462 L18 462 L18 42 Z" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="30" cy="30" r="3.5" fill="currentColor"/>
+        <text x="260" y="13" text-anchor="middle" font-size="7" class="lbl" letter-spacing="2" opacity="0.5">SYM-1 SoC</text>
 
-        <!-- Die boundary -->
-        <rect x="68" y="68" width="104" height="104" stroke="currentColor" stroke-width="1.2"/>
+        <!-- ── DIE BOUNDARY ── -->
+        <rect x="63" y="63" width="394" height="354" stroke="currentColor" stroke-width="1.2"/>
 
-        <!-- Die internal grid -->
-        <line x1="86" y1="68" x2="86" y2="172" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="104" y1="68" x2="104" y2="172" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="120" y1="68" x2="120" y2="172" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="136" y1="68" x2="136" y2="172" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="154" y1="68" x2="154" y2="172" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
+        <!-- ── LEADS — top (x: 110 168 235 300 360 415) ── -->
+        <line x1="110" y1="63" x2="110" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="168" y1="63" x2="168" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="235" y1="63" x2="235" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="300" y1="63" x2="300" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="360" y1="63" x2="360" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="415" y1="63" x2="415" y2="18" stroke="currentColor" stroke-width="0.9"/>
+        <rect x="106" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="164" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="231" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="296" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="356" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="411" y="11" width="8" height="8" fill="currentColor" opacity="0.8"/>
 
-        <line x1="68" y1="86" x2="172" y2="86" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="68" y1="104" x2="172" y2="104" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="68" y1="120" x2="172" y2="120" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="68" y1="136" x2="172" y2="136" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
-        <line x1="68" y1="154" x2="172" y2="154" stroke="currentColor" stroke-width="0.3" opacity="0.6"/>
+        <!-- ── LEADS — bottom ── -->
+        <line x1="110" y1="417" x2="110" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="168" y1="417" x2="168" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="235" y1="417" x2="235" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="300" y1="417" x2="300" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="360" y1="417" x2="360" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="415" y1="417" x2="415" y2="462" stroke="currentColor" stroke-width="0.9"/>
+        <rect x="106" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="164" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="231" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="296" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="356" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="411" y="461" width="8" height="8" fill="currentColor" opacity="0.8"/>
 
-        <!-- Leads — top (3 leads at x=88, 120, 152) -->
-        <line x1="88" y1="68" x2="88" y2="10" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="120" y1="68" x2="120" y2="10" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="152" y1="68" x2="152" y2="10" stroke="currentColor" stroke-width="0.9"/>
-        <rect x="84" y="6" width="8" height="6" fill="currentColor" opacity="0.8"/>
-        <rect x="116" y="6" width="8" height="6" fill="currentColor" opacity="0.8"/>
-        <rect x="148" y="6" width="8" height="6" fill="currentColor" opacity="0.8"/>
+        <!-- ── LEADS — left (y: 120 185 245 325 385) ── -->
+        <line x1="63" y1="120" x2="18" y2="120" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="63" y1="185" x2="18" y2="185" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="63" y1="245" x2="18" y2="245" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="63" y1="325" x2="18" y2="325" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="63" y1="385" x2="18" y2="385" stroke="currentColor" stroke-width="0.9"/>
+        <rect x="11" y="116" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="11" y="181" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="11" y="241" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="11" y="321" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="11" y="381" width="8" height="8" fill="currentColor" opacity="0.8"/>
 
-        <!-- Leads — bottom -->
-        <line x1="88" y1="172" x2="88" y2="230" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="120" y1="172" x2="120" y2="230" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="152" y1="172" x2="152" y2="230" stroke="currentColor" stroke-width="0.9"/>
-        <rect x="84" y="228" width="8" height="6" fill="currentColor" opacity="0.8"/>
-        <rect x="116" y="228" width="8" height="6" fill="currentColor" opacity="0.8"/>
-        <rect x="148" y="228" width="8" height="6" fill="currentColor" opacity="0.8"/>
+        <!-- ── LEADS — right ── -->
+        <line x1="457" y1="120" x2="502" y2="120" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="457" y1="185" x2="502" y2="185" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="457" y1="245" x2="502" y2="245" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="457" y1="325" x2="502" y2="325" stroke="currentColor" stroke-width="0.9"/>
+        <line x1="457" y1="385" x2="502" y2="385" stroke="currentColor" stroke-width="0.9"/>
+        <rect x="501" y="116" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="501" y="181" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="501" y="241" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="501" y="321" width="8" height="8" fill="currentColor" opacity="0.8"/>
+        <rect x="501" y="381" width="8" height="8" fill="currentColor" opacity="0.8"/>
 
-        <!-- Leads — left -->
-        <line x1="68" y1="88" x2="10" y2="88" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="68" y1="120" x2="10" y2="120" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="68" y1="152" x2="10" y2="152" stroke="currentColor" stroke-width="0.9"/>
-        <rect x="6" y="84" width="6" height="8" fill="currentColor" opacity="0.8"/>
-        <rect x="6" y="116" width="6" height="8" fill="currentColor" opacity="0.8"/>
-        <rect x="6" y="148" width="6" height="8" fill="currentColor" opacity="0.8"/>
+        <!-- ── CORNER FIDUCIALS ── -->
+        <polyline points="18,38 18,18 38,18" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+        <polyline points="484,18 502,18 502,38" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+        <polyline points="18,444 18,462 38,462" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
+        <polyline points="484,462 502,462 502,444" stroke="currentColor" stroke-width="0.9" opacity="0.4"/>
 
-        <!-- Leads — right -->
-        <line x1="172" y1="88" x2="230" y2="88" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="172" y1="120" x2="230" y2="120" stroke="currentColor" stroke-width="0.9"/>
-        <line x1="172" y1="152" x2="230" y2="152" stroke="currentColor" stroke-width="0.9"/>
-        <rect x="228" y="84" width="6" height="8" fill="currentColor" opacity="0.8"/>
-        <rect x="228" y="116" width="6" height="8" fill="currentColor" opacity="0.8"/>
-        <rect x="228" y="148" width="6" height="8" fill="currentColor" opacity="0.8"/>
+        <!-- ════════════════════════════════════════ -->
+        <!-- ROW 1: CPU | GPU | NPU                  -->
+        <!-- ════════════════════════════════════════ -->
 
-        <!-- Corner fiducials -->
-        <polyline points="10,22 10,10 22,10" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
-        <polyline points="218,10 230,10 230,22" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
-        <polyline points="10,218 10,230 22,230" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
-        <polyline points="218,230 230,230 230,218" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+        <!-- ── CPU  (68,68 → 183,183 = 115×115) ── -->
+        <rect x="68" y="68" width="115" height="115" stroke="currentColor" stroke-width="0.9"/>
+        <text x="125" y="79" text-anchor="middle" font-size="9" class="lbl" letter-spacing="1.5">CPU</text>
+
+        <!-- P-cores label -->
+        <text x="97" y="91" text-anchor="middle" font-size="5.5" class="lbl" opacity="0.75">P-CORE ×4</text>
+        <!-- P-core 2×2 grid (each 50×26, gap 3) -->
+        <rect x="72" y="94" width="50" height="26" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="125" y="94" width="50" height="26" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="72" y="123" width="50" height="26" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="125" y="123" width="50" height="26" stroke="currentColor" stroke-width="0.6"/>
+        <text x="97"  y="110" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.6">P0</text>
+        <text x="150" y="110" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.6">P1</text>
+        <text x="97"  y="139" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.6">P2</text>
+        <text x="150" y="139" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.6">P3</text>
+
+        <!-- Divider -->
+        <line x1="72" y1="154" x2="179" y2="154" stroke="currentColor" stroke-width="0.4" opacity="0.5"/>
+
+        <!-- E-cores label -->
+        <text x="125" y="163" text-anchor="middle" font-size="5.5" class="lbl" opacity="0.75">E-CORE ×4</text>
+        <!-- E-core 1×4 row (each 23×12, gap 3) -->
+        <rect x="72"  y="166" width="23" height="12" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="98"  y="166" width="23" height="12" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="124" y="166" width="23" height="12" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="150" y="166" width="23" height="12" stroke="currentColor" stroke-width="0.5"/>
+        <text x="83"  y="175" text-anchor="middle" font-size="4" class="lbl" opacity="0.6">E0</text>
+        <text x="109" y="175" text-anchor="middle" font-size="4" class="lbl" opacity="0.6">E1</text>
+        <text x="135" y="175" text-anchor="middle" font-size="4" class="lbl" opacity="0.6">E2</text>
+        <text x="161" y="175" text-anchor="middle" font-size="4" class="lbl" opacity="0.6">E3</text>
+
+        <!-- ── GPU  (188,68 → 343,183 = 155×115) ── -->
+        <rect x="188" y="68" width="155" height="115" stroke="currentColor" stroke-width="0.9"/>
+        <text x="265" y="79" text-anchor="middle" font-size="9" class="lbl" letter-spacing="1.5">GPU</text>
+        <text x="265" y="90" text-anchor="middle" font-size="5.5" class="lbl" opacity="0.7">10-CORE GRAPHICS</text>
+
+        <!-- 5×2 compute unit grid (each 25×40, gap 4) -->
+        <rect x="193" y="94" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="222" y="94" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="251" y="94" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="280" y="94" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="309" y="94" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="193" y="138" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="222" y="138" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="251" y="138" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="280" y="138" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <rect x="309" y="138" width="25" height="40" stroke="currentColor" stroke-width="0.6"/>
+        <text x="205" y="118" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU0</text>
+        <text x="234" y="118" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU1</text>
+        <text x="263" y="118" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU2</text>
+        <text x="292" y="118" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU3</text>
+        <text x="321" y="118" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU4</text>
+        <text x="205" y="162" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU5</text>
+        <text x="234" y="162" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU6</text>
+        <text x="263" y="162" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU7</text>
+        <text x="292" y="162" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU8</text>
+        <text x="321" y="162" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CU9</text>
+
+        <!-- ── NPU  (348,68 → 452,183 = 104×115) ── -->
+        <rect x="348" y="68" width="104" height="115" stroke="currentColor" stroke-width="0.9"/>
+        <text x="400" y="79"  text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">NEURAL</text>
+        <text x="400" y="89"  text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">ENGINE</text>
+        <text x="400" y="99"  text-anchor="middle" font-size="5"   class="lbl" opacity="0.65">16-CORE</text>
+
+        <!-- 4×4 neural cell array -->
+        <rect x="353" y="103" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="377" y="103" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="401" y="103" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="425" y="103" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="353" y="123" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="377" y="123" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="401" y="123" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="425" y="123" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="353" y="143" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="377" y="143" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="401" y="143" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="425" y="143" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="353" y="163" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="377" y="163" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="401" y="163" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="425" y="163" width="20" height="16" stroke="currentColor" stroke-width="0.5"/>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ROW 2: MEM | ISP | MEDIA | DISPLAY      -->
+        <!-- ════════════════════════════════════════ -->
+
+        <!-- ── MEM CTRL  (68,188 → 156,273 = 88×85) ── -->
+        <rect x="68" y="188" width="88" height="85" stroke="currentColor" stroke-width="0.9"/>
+        <text x="112" y="200" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">MEM</text>
+        <text x="112" y="210" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">CTRL</text>
+        <rect x="72" y="216" width="80" height="14" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+        <rect x="72" y="233" width="80" height="14" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+        <rect x="72" y="250" width="80" height="14" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+        <text x="112" y="226" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CH 0</text>
+        <text x="112" y="243" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CH 1</text>
+        <text x="112" y="260" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">CH 2</text>
+
+        <!-- ── ISP  (161,188 → 236,273 = 75×85) ── -->
+        <rect x="161" y="188" width="75" height="85" stroke="currentColor" stroke-width="0.9"/>
+        <text x="199" y="200" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">ISP</text>
+        <text x="199" y="210" text-anchor="middle" font-size="5"   class="lbl" opacity="0.65">IMAGE SIGNAL</text>
+        <rect x="165" y="218" width="67" height="36" stroke="currentColor" stroke-width="0.4" opacity="0.5"/>
+        <line x1="165" y1="229" x2="232" y2="229" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+        <line x1="165" y1="240" x2="232" y2="240" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+        <line x1="165" y1="251" x2="232" y2="251" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+        <text x="199" y="262" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.5">PIPELINE</text>
+
+        <!-- ── MEDIA ENGINE  (241,188 → 316,273 = 75×85) ── -->
+        <rect x="241" y="188" width="75" height="85" stroke="currentColor" stroke-width="0.9"/>
+        <text x="279" y="200" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.3">MEDIA</text>
+        <text x="279" y="210" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.3">ENGINE</text>
+        <text x="279" y="222" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.6">H.264 · H.265 · AV1</text>
+        <rect x="245" y="228" width="30" height="36" stroke="currentColor" stroke-width="0.4" opacity="0.6"/>
+        <rect x="279" y="228" width="30" height="36" stroke="currentColor" stroke-width="0.4" opacity="0.6"/>
+        <text x="260" y="250" text-anchor="middle" font-size="4" class="lbl" opacity="0.5">DEC</text>
+        <text x="294" y="250" text-anchor="middle" font-size="4" class="lbl" opacity="0.5">ENC</text>
+
+        <!-- ── DISPLAY ENGINE  (321,188 → 452,273 = 131×85) ── -->
+        <rect x="321" y="188" width="131" height="85" stroke="currentColor" stroke-width="0.9"/>
+        <text x="387" y="200" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.3">DISPLAY</text>
+        <text x="387" y="210" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.3">ENGINE</text>
+        <rect x="325" y="217" width="124" height="46" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <rect x="328" y="220" width="118" height="40" stroke="currentColor" stroke-width="0.3" opacity="0.4"/>
+        <text x="387" y="243" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.5">FRAMEBUFFER</text>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ROW 3: I/O | FABRIC | SECURE ENCLAVE    -->
+        <!-- ════════════════════════════════════════ -->
+
+        <!-- ── I/O  (68,278 → 186,412 = 118×134) ── -->
+        <rect x="68" y="278" width="118" height="134" stroke="currentColor" stroke-width="0.9"/>
+        <text x="127" y="290" text-anchor="middle" font-size="9" class="lbl" letter-spacing="1.5">I/O</text>
+        <rect x="72" y="296" width="110" height="24" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <rect x="72" y="324" width="110" height="24" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <rect x="72" y="352" width="110" height="24" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <rect x="72" y="380" width="110" height="24" stroke="currentColor" stroke-width="0.5" opacity="0.8"/>
+        <text x="127" y="312" text-anchor="middle" font-size="5" class="lbl" opacity="0.65">USB 4 · THUNDERBOLT</text>
+        <text x="127" y="340" text-anchor="middle" font-size="5" class="lbl" opacity="0.65">PCIe · NVMe</text>
+        <text x="127" y="368" text-anchor="middle" font-size="5" class="lbl" opacity="0.65">SDIO · SPI · I²C</text>
+        <text x="127" y="396" text-anchor="middle" font-size="5" class="lbl" opacity="0.65">ETHERNET · WIFI</text>
+
+        <!-- ── FABRIC / INTERCONNECT  (191,278 → 286,412 = 95×134) ── -->
+        <rect x="191" y="278" width="95" height="134" stroke="currentColor" stroke-width="0.9"/>
+        <text x="238" y="290" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.3">FABRIC</text>
+        <text x="238" y="300" text-anchor="middle" font-size="5"   class="lbl" opacity="0.6">INTERCONNECT</text>
+        <!-- Routing mesh suggestion -->
+        <line x1="195" y1="315" x2="282" y2="315" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="195" y1="330" x2="282" y2="330" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="195" y1="345" x2="282" y2="345" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="195" y1="360" x2="282" y2="360" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="195" y1="375" x2="282" y2="375" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="195" y1="390" x2="282" y2="390" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="213" y1="308" x2="213" y2="408" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="231" y1="308" x2="231" y2="408" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="249" y1="308" x2="249" y2="408" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+        <line x1="267" y1="308" x2="267" y2="408" stroke="currentColor" stroke-width="0.4" opacity="0.45"/>
+
+        <!-- ── SECURE ENCLAVE  (291,278 → 452,412 = 161×134) ── -->
+        <rect x="291" y="278" width="161" height="134" stroke="currentColor" stroke-width="0.9"/>
+        <text x="372" y="290" text-anchor="middle" font-size="7.5" class="lbl" letter-spacing="0.5">SECURE ENCLAVE</text>
+        <!-- Outer secure boundary -->
+        <rect x="297" y="296" width="149" height="110" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <!-- AES engine -->
+        <rect x="301" y="300" width="66" height="46" stroke="currentColor" stroke-width="0.6"/>
+        <text x="334" y="317" text-anchor="middle" font-size="5.5" class="lbl">AES-256</text>
+        <text x="334" y="328" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">GCM · XTS</text>
+        <text x="334" y="340" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">ENCRYPT</text>
+        <!-- Key store -->
+        <rect x="373" y="300" width="69" height="46" stroke="currentColor" stroke-width="0.6"/>
+        <text x="408" y="317" text-anchor="middle" font-size="5.5" class="lbl">KEY STORE</text>
+        <text x="408" y="328" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">ECC · RSA</text>
+        <text x="408" y="340" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">FIPS 140-3</text>
+        <!-- Secure boot -->
+        <rect x="301" y="351" width="141" height="50" stroke="currentColor" stroke-width="0.6"/>
+        <text x="372" y="365" text-anchor="middle" font-size="5.5" class="lbl">SECURE BOOT</text>
+        <text x="372" y="377" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">ATTESTATION · TRUST ZONE</text>
+        <text x="372" y="389" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">SEP · ANTI-ROLLBACK</text>
+
       </svg>
     </div>
   </div>
