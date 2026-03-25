@@ -289,7 +289,7 @@ In Hero.astro, add a `<script>` block (or append to the existing one if there is
     neural: {
       tag: 'NEURAL ENGINE · RESEARCH',
       title: 'ML for drug discovery',
-      desc: 'IEEE paper on structured pruning for efficient inference.',
+      desc: 'Co-authored an ML paper on molecular generation published in 2025 in IEEE',
       url: 'https://ieeexplore.ieee.org/document/11106423',
     },
     io: {
