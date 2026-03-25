@@ -74,6 +74,13 @@
     <!-- Right: SoC die floorplan illustration -->
     <div class="hidden md:flex justify-center items-center relative" id="chip-wrapper">
       <div class="chip-halo" aria-hidden="true"></div>
+      <!-- Chip hover info panel -->
+      <div id="chip-panel" class="chip-panel" aria-hidden="true" role="region" aria-label="Project info">
+        <div class="chip-panel-tag" id="cp-tag"></div>
+        <div class="chip-panel-title" id="cp-title"></div>
+        <div class="chip-panel-desc" id="cp-desc"></div>
+        <a id="cp-link" class="chip-panel-cue" href="#" target="_blank" rel="noopener noreferrer">click to view →</a>
+      </div>
       <svg
         viewBox="0 0 520 480"
         class="w-[420px] h-[386px] text-accent" style="opacity:0.55"
@@ -392,4 +399,54 @@
     cursor: pointer;
     outline: none;
   }
+
+  .chip-panel {
+    position: absolute;
+    right: calc(100% - 16px);
+    top: 50%;
+    transform: translateY(-50%) translateX(12px);
+    width: 200px;
+    background: #18181B;
+    border: 1px solid #27272A;
+    border-left: 2px solid #F59E0B;
+    border-radius: 6px;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 10;
+  }
+  .chip-panel.chip-panel--visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    pointer-events: auto;
+  }
+  .chip-panel-tag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #F59E0B;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .chip-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FAFAFA;
+    margin-bottom: 6px;
+  }
+  .chip-panel-desc {
+    font-size: 11px;
+    color: #71717A;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .chip-panel-cue {
+    font-size: 10px;
+    color: #F59E0B;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: block;
+  }
+  .chip-panel-cue:hover { text-decoration: underline; }
 </style>
