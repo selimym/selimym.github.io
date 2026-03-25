@@ -55,7 +55,7 @@ const jobs = [
     <div class="absolute left-[7px] md:left-[11px] top-0 bottom-0 w-px bg-border"></div>
 
     <div class="space-y-10">
-      {jobs.map((job, i) => (
+      {jobs.map((job) => (
         <div class="reveal relative pl-8 md:pl-12">
           <!-- Dot -->
           <div class={`absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 ${job.type === 'education' ? 'border-emerald bg-bg' : 'border-accent bg-bg'}`}></div>
