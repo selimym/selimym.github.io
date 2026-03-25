@@ -85,6 +85,18 @@
           <style>
             .lbl { font-family: 'JetBrains Mono', monospace; fill: currentColor; }
           </style>
+          <linearGradient id="shimmer-grad" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F59E0B" stop-opacity="0"/>
+            <stop offset="50%"  stop-color="#F59E0B" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+            <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              from="-520 0"
+              to="520 0"
+              dur="3.8s"
+              repeatCount="indefinite"/>
+          </linearGradient>
         </defs>
 
         <!-- ── PACKAGE ── -->
@@ -335,6 +347,23 @@
         <text x="372" y="377" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">ATTESTATION · TRUST ZONE</text>
         <text x="372" y="389" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">SEP · ANTI-ROLLBACK</text>
 
+        <!-- ── INTERACTIVE OVERLAY RECTS ── -->
+        <rect class="chip-overlay" data-project="neural"  role="button" tabindex="0"
+          x="348" y="68"  width="104" height="115"
+          fill="url(#shimmer-grad)"
+          aria-label="Neural Network Pruning — research paper"/>
+        <rect class="chip-overlay" data-project="io"      role="button" tabindex="0"
+          x="68"  y="278" width="118" height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="Text-to-SQL — GitHub project"/>
+        <rect class="chip-overlay" data-project="fabric"  role="button" tabindex="0"
+          x="191" y="278" width="95"  height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="URL Shortener — GitHub project"/>
+        <rect class="chip-overlay" data-project="enclave" role="button" tabindex="0"
+          x="291" y="278" width="161" height="134"
+          fill="url(#shimmer-grad)"
+          aria-label="Data Privacy Dystopia — game"/>
       </svg>
     </div>
   </div>
@@ -357,5 +386,10 @@
     background: radial-gradient(ellipse 70% 60% at 50% 50%, #F59E0B18 0%, transparent 70%);
     pointer-events: none;
     border-radius: 8px;
+  }
+
+  .chip-overlay {
+    cursor: pointer;
+    outline: none;
   }
 </style>
