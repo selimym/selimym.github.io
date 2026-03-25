@@ -450,3 +450,97 @@
   }
   .chip-panel-cue:hover { text-decoration: underline; }
 </style>
+
+<script>
+  const PROJECTS: Record<string, { tag: string; title: string; desc: string; url: string }> = {
+    neural: {
+      tag: 'NEURAL ENGINE · RESEARCH',
+      title: 'Neural Network Pruning',
+      desc: 'IEEE paper on structured pruning for efficient inference.',
+      url: 'https://ieeexplore.ieee.org/document/11106423',
+    },
+    io: {
+      tag: 'I/O · PROJECT',
+      title: 'Text-to-SQL',
+      desc: 'Natural language to SQL query engine.',
+      url: 'https://github.com/selimym/text2sql',
+    },
+    fabric: {
+      tag: 'FABRIC · PROJECT',
+      title: 'URL Shortener',
+      desc: 'Custom URL shortening service.',
+      url: 'https://github.com/selimym/url_shortener',
+    },
+    enclave: {
+      tag: 'SECURE ENCLAVE · GAME',
+      title: 'Data Privacy Dystopia',
+      desc: 'A game about data surveillance and privacy.',
+      url: 'https://selimym.github.io/data_privacy_distopia',
+    },
+  };
+
+  const panel    = document.getElementById('chip-panel')!;
+  const wrapper  = document.getElementById('chip-wrapper')!;
+  const overlays = document.querySelectorAll<SVGRectElement>('.chip-overlay');
+
+  function showPanel(projectKey: string) {
+    const p = PROJECTS[projectKey];
+    if (!p) return;
+    (document.getElementById('cp-tag')   as HTMLElement).textContent = p.tag;
+    (document.getElementById('cp-title') as HTMLElement).textContent = p.title;
+    (document.getElementById('cp-desc')  as HTMLElement).textContent = p.desc;
+    const link = document.getElementById('cp-link') as HTMLAnchorElement;
+    if (p.url) {
+      link.href = p.url;
+      link.style.display = 'block';
+    } else {
+      link.style.display = 'none';
+    }
+    panel.classList.add('chip-panel--visible');
+    panel.setAttribute('aria-hidden', 'false');
+  }
+
+  function hidePanel() {
+    panel.classList.remove('chip-panel--visible');
+    panel.setAttribute('aria-hidden', 'true');
+  }
+
+  overlays.forEach(rect => {
+    const proj = (rect as unknown as HTMLElement).dataset.project ?? '';
+
+    // Mouse
+    rect.addEventListener('mouseenter', () => {
+      rect.style.fill = '#F59E0B22';
+      showPanel(proj);
+    });
+    rect.addEventListener('mouseleave', () => {
+      rect.style.fill = 'url(#shimmer-grad)';
+    });
+
+    // Keyboard
+    rect.addEventListener('focus', () => {
+      rect.style.fill = '#F59E0B22';
+      showPanel(proj);
+    });
+    rect.addEventListener('blur', () => {
+      rect.style.fill = 'url(#shimmer-grad)';
+      hidePanel();
+    });
+
+    // Click / Enter / Space → open URL
+    const openUrl = () => {
+      const url = PROJECTS[proj]?.url;
+      if (url) window.open(url, '_blank', 'noopener,noreferrer');
+    };
+    rect.addEventListener('click', openUrl);
+    rect.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openUrl();
+      }
+    });
+  });
+
+  // Hide when mouse leaves the entire wrapper (SVG + panel combined)
+  wrapper.addEventListener('mouseleave', hidePanel);
+</script>
