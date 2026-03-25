@@ -92,9 +92,9 @@
           <style>
             .lbl { font-family: 'JetBrains Mono', monospace; fill: currentColor; }
           </style>
-          <linearGradient id="shimmer-grad" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+          <linearGradient id="shimmer-grad" x1="-150" y1="0" x2="150" y2="0" gradientUnits="userSpaceOnUse">
             <stop offset="0%"   stop-color="#F59E0B" stop-opacity="0"/>
-            <stop offset="50%"  stop-color="#F59E0B" stop-opacity="0.18"/>
+            <stop offset="50%"  stop-color="#F59E0B" stop-opacity="0.30"/>
             <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
             <animateTransform
               attributeName="gradientTransform"
@@ -403,7 +403,7 @@
   .chip-panel {
     position: absolute;
     right: calc(100% - 16px);
-    top: 50%;
+    top: 0;
     transform: translateY(-50%) translateX(12px);
     width: 200px;
     background: #18181B;
@@ -483,7 +483,7 @@
   const wrapper  = document.getElementById('chip-wrapper')!;
   const overlays = document.querySelectorAll<SVGRectElement>('.chip-overlay');
 
-  function showPanel(projectKey: string) {
+  function showPanel(projectKey: string, rectEl: SVGRectElement) {
     const p = PROJECTS[projectKey];
     if (!p) return;
     (document.getElementById('cp-tag')   as HTMLElement).textContent = p.tag;
@@ -496,6 +496,13 @@
     } else {
       link.style.display = 'none';
     }
+
+    // Vertically align panel with the center of the hovered block
+    const wrapperBounds = wrapper.getBoundingClientRect();
+    const blockBounds   = rectEl.getBoundingClientRect();
+    const blockCenterY  = blockBounds.top + blockBounds.height / 2 - wrapperBounds.top;
+    panel.style.top = `${blockCenterY}px`;
+
     panel.classList.add('chip-panel--visible');
     panel.setAttribute('aria-hidden', 'false');
   }
@@ -510,17 +517,22 @@
 
     // Mouse
     rect.addEventListener('mouseenter', () => {
-      rect.style.fill = '#F59E0B22';
-      showPanel(proj);
+      rect.style.fill = '#F59E0B33';
+      showPanel(proj, rect);
     });
-    rect.addEventListener('mouseleave', () => {
+    rect.addEventListener('mouseleave', (e: MouseEvent) => {
       rect.style.fill = 'url(#shimmer-grad)';
+      // Hide unless mouse moved to the info panel
+      const to = e.relatedTarget as Node | null;
+      if (to !== panel && !panel.contains(to)) {
+        hidePanel();
+      }
     });
 
     // Keyboard
     rect.addEventListener('focus', () => {
-      rect.style.fill = '#F59E0B22';
-      showPanel(proj);
+      rect.style.fill = '#F59E0B33';
+      showPanel(proj, rect);
     });
     rect.addEventListener('blur', () => {
       rect.style.fill = 'url(#shimmer-grad)';
@@ -541,6 +553,13 @@
     });
   });
 
-  // Hide when mouse leaves the entire wrapper (SVG + panel combined)
+  // Hide when mouse leaves the panel unless moving to an overlay rect
+  panel.addEventListener('mouseleave', (e: MouseEvent) => {
+    const to = e.relatedTarget as Element | null;
+    const goingToRect = to && (to as SVGRectElement).classList?.contains('chip-overlay');
+    if (!goingToRect) hidePanel();
+  });
+
+  // Fallback: hide when mouse leaves the entire wrapper
   wrapper.addEventListener('mouseleave', hidePanel);
 </script>
