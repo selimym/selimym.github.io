@@ -71,7 +71,7 @@ Add to `<defs>`:
 
 Add transparent overlay `<rect>` elements at the **end** of the SVG (so they sit on top of all existing content), one per active block:
 ```svg
-<rect class="chip-overlay" data-project="neural"  role="button" x="348" y="68"  width="104" height="115" fill="url(#shimmer-grad)" tabindex="0" aria-label="Neural Network Pruning — research paper"/>
+<rect class="chip-overlay" data-project="neural"  role="button" x="348" y="68"  width="104" height="115" fill="url(#shimmer-grad)" tabindex="0" aria-label="ML for drug discovery — research paper"/>
 <rect class="chip-overlay" data-project="io"       role="button" x="68"  y="278" width="118" height="134" fill="url(#shimmer-grad)" tabindex="0" aria-label="Text-to-SQL — GitHub project"/>
 <rect class="chip-overlay" data-project="fabric"   role="button" x="191" y="278" width="95"  height="134" fill="url(#shimmer-grad)" tabindex="0" aria-label="URL Shortener — GitHub project"/>
 <rect class="chip-overlay" data-project="enclave"  role="button" x="291" y="278" width="161" height="134" fill="url(#shimmer-grad)" tabindex="0" aria-label="Data Privacy Dystopia — game"/>
@@ -173,7 +173,7 @@ The `mouseleave` listener is on `#chip-wrapper` (the outer wrapper div containin
 const PROJECTS = {
   neural: {
     tag: 'NEURAL ENGINE · RESEARCH',
-    title: 'Neural Network Pruning',
+    title: 'ML for drug discovery',
     desc: 'IEEE paper on structured pruning for efficient inference.',
     url: 'https://ieeexplore.ieee.org/document/11106423',
   },

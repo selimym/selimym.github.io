@@ -145,7 +145,7 @@ Immediately before the closing `</svg>` tag, add four overlay rects (placed last
 <rect class="chip-overlay" data-project="neural"  role="button" tabindex="0"
   x="348" y="68"  width="104" height="115"
   fill="url(#shimmer-grad)"
-  aria-label="Neural Network Pruning — research paper"/>
+  aria-label="ML for drug discovery — research paper"/>
 <rect class="chip-overlay" data-project="io"      role="button" tabindex="0"
   x="68"  y="278" width="118" height="134"
   fill="url(#shimmer-grad)"
@@ -288,7 +288,7 @@ In Hero.astro, add a `<script>` block (or append to the existing one if there is
   const PROJECTS: Record<string, { tag: string; title: string; desc: string; url: string }> = {
     neural: {
       tag: 'NEURAL ENGINE · RESEARCH',
-      title: 'Neural Network Pruning',
+      title: 'ML for drug discovery',
       desc: 'IEEE paper on structured pruning for efficient inference.',
       url: 'https://ieeexplore.ieee.org/document/11106423',
     },
@@ -389,7 +389,7 @@ Expected: clean, no TypeScript errors.
 - [ ] **Step 3: Manual smoke test**
 
 Run `npm run dev`. Open browser:
-- Hover Neural Engine (top-right block) → panel slides in with "Neural Network Pruning"
+- Hover Neural Engine (top-right block) → panel slides in with "ML for drug discovery"
 - Hover I/O (bottom-left block) → panel shows "Text-to-SQL"
 - Hover Fabric (bottom-middle block) → panel shows "URL Shortener"
 - Hover Secure Enclave (bottom-right block) → panel shows "Data Privacy Dystopia"
@@ -479,7 +479,7 @@ test.describe('Chip hover panel', () => {
     await rect.hover();
     const panel = page.locator('#chip-panel');
     await expect(panel).toHaveAttribute('aria-hidden', 'false');
-    await expect(page.locator('#cp-title')).toHaveText('Neural Network Pruning');
+    await expect(page.locator('#cp-title')).toHaveText('ML for drug discovery');
     await expect(page.locator('#cp-tag')).toContainText('NEURAL ENGINE');
     await expect(page.locator('#cp-link')).toHaveAttribute(
       'href',
@@ -581,7 +581,7 @@ gh pr create \
 
 | Block | Project |
 |---|---|
-| Neural Engine | IEEE paper on neural network pruning |
+| Neural Engine | IEEE paper on ML for drug discovery |
 | I/O | Text-to-SQL (GitHub) |
 | Fabric/Interconnect | URL Shortener (GitHub) |
 | Secure Enclave | Data Privacy Dystopia (game) |

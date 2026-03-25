@@ -27,7 +27,7 @@ test.describe('Chip hover panel', () => {
     await rect.hover();
     const panel = page.locator('#chip-panel');
     await expect(panel).toHaveAttribute('aria-hidden', 'false');
-    await expect(page.locator('#cp-title')).toHaveText('Neural Network Pruning');
+    await expect(page.locator('#cp-title')).toHaveText('ML for drug discovery');
     await expect(page.locator('#cp-tag')).toContainText('NEURAL ENGINE');
     await expect(page.locator('#cp-link')).toHaveAttribute(
       'href',
