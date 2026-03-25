@@ -1,0 +1,102 @@
+---
+const jobs = [
+  {
+    role: 'Senior Software Engineer',
+    company: 'Qualcomm Technologies',
+    location: 'Cork, Ireland',
+    period: 'Nov 2023 to present',
+    type: 'work',
+    highlights: [
+      'Prototyping an agentic log analysis pipeline with LangGraph: orchestration patterns, guardrails, and eval harnesses',
+      'Owns Python connectivity graph extraction tools used daily by 140+ hardware engineers',
+      'Primary support for release-critical tickets; ships targeted fixes under tape-out pressure',
+      'Maintains code quality via pytest, mypy, Jenkins, and PR reviews',
+    ],
+  },
+  {
+    role: 'Software Engineer',
+    company: 'Qualcomm Technologies',
+    location: 'Cork, Ireland',
+    period: 'Jan 2022 to Oct 2023',
+    type: 'work',
+    highlights: [
+      'Built internal replacement for a vendor validation tool, saving $2M+/year in licensing costs',
+      'Rigorous regression testing and phased rollout to 140+ users before fully retiring the vendor product',
+      'Added structured logging and improved error handling across critical paths',
+    ],
+  },
+  {
+    role: 'Machine Learning Research Intern',
+    company: 'Huawei Technologies France',
+    location: 'Paris, France',
+    period: 'Feb 2021 to Aug 2021',
+    type: 'work',
+    highlights: [
+      'Researched binary neural networks for vision tasks on computing-constrained devices',
+      'Implemented and evaluated regularization techniques to improve model generalization',
+    ],
+  },
+  {
+    role: 'M.Sc. Electrical & Computer Engineering',
+    company: 'ENSEA',
+    location: 'Cergy, France  ·  Exchange at Sapienza University, Rome',
+    period: '2018 to 2021',
+    type: 'education',
+    highlights: [
+      'Signal processing, embedded systems, algorithms',
+      'Exchange year at Sapienza (Rome): Machine Learning and Computer Networks',
+      'Preceded by 3 years Classes Préparatoires (Physics / Mathematics)',
+    ],
+  },
+];
+---
+
+<section id="experience" class="py-24 px-6 max-w-5xl mx-auto">
+  <div class="reveal">
+    <div class="flex items-center gap-3 mb-12">
+      <span class="text-xs font-mono text-accent/70 uppercase tracking-widest">Experience</span>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <!-- Vertical line -->
+    <div class="absolute left-[7px] md:left-[11px] top-0 bottom-0 w-px bg-border"></div>
+
+    <div class="space-y-10">
+      {jobs.map((job, i) => (
+        <div class="reveal relative pl-8 md:pl-12">
+          <!-- Dot -->
+          <div class={`absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 ${job.type === 'education' ? 'border-emerald bg-bg' : 'border-accent bg-bg'}`}></div>
+
+          <!-- Content -->
+          <div class="bg-surface border border-border rounded-xl p-5 md:p-6 hover:border-accent/20 transition-colors group">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-base font-semibold text-text">{job.role}</h3>
+                <p class="text-sm text-accent font-medium">{job.company}</p>
+                <p class="text-xs text-muted mt-0.5">{job.location}</p>
+              </div>
+              <span class="text-xs font-mono text-muted bg-bg px-2.5 py-1 rounded-md border border-border self-start whitespace-nowrap">
+                {job.period}
+              </span>
+            </div>
+
+            <ul class="space-y-2">
+              {job.highlights.map((h) => (
+                <li class="flex gap-2.5 text-sm text-muted leading-relaxed">
+                  <span class="text-accent mt-1.5 flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

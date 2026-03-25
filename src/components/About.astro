@@ -1,0 +1,69 @@
+---
+---
+
+<section id="about" class="py-24 px-6 max-w-5xl mx-auto">
+  <div class="reveal">
+    <div class="flex items-center gap-3 mb-12">
+      <span class="text-xs font-mono text-accent/70 uppercase tracking-widest">About</span>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-5 gap-12 items-start">
+    <!-- Text -->
+    <div class="md:col-span-3 space-y-5 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tight">
+        I write tools<br />
+        <span class="text-accent">for people who design chips.</span>
+      </h2>
+      <p class="text-muted leading-relaxed">
+        My day job at Qualcomm is EDA software. I write Python tools that hardware engineers use
+        to validate connectivity in chip designs. These tools sit in the critical path for tape-out,
+        the point of no return in chip design. The chips my code helps validate are inside most
+        Android phones made in the past few years, and the ones shipping in the years to come.
+        That's something few software engineers can say.
+      </p>
+      <p class="text-muted leading-relaxed">
+        On the side I've been building in the LLM space: a Text-to-SQL pipeline exploring different
+        RAG strategies and LangGraph orchestration patterns, and an
+        <a href="https://selimym.github.io/data_privacy_distopia/" target="_blank" rel="noopener noreferrer"
+           class="text-accent hover:text-text transition-colors underline underline-offset-2">educational browser game</a>
+        about how surveillance systems get normalized. I also co-authored a 2025 ML paper on molecular generation.
+      </p>
+      <p class="text-muted leading-relaxed">
+        My users are hardware engineers on tape-out deadlines. They have zero tolerance for bugs.
+        That shapes how I think about software quality.
+      </p>
+
+      <!-- Publication -->
+      <div class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border text-sm text-muted">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Co-author, <span class="text-text font-medium">MGOL: Molecule Generation with Ordering Loss</span> &mdash; 2025
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="md:col-span-2 grid grid-cols-1 gap-4 reveal">
+      <div class="stat-card">
+        <div class="text-4xl font-bold text-text mb-1">4<span class="text-accent">+</span></div>
+        <div class="text-sm text-muted">Years production Python at Qualcomm</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-4xl font-bold text-text mb-1">$2<span class="text-accent">M+</span></div>
+        <div class="text-sm text-muted">Annual licensing costs saved</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-4xl font-bold text-text mb-1">140<span class="text-accent">+</span></div>
+        <div class="text-sm text-muted">Chip designers using my tools daily</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stat-card {
+    @apply p-5 rounded-xl bg-surface border border-border hover:border-accent/30 transition-colors;
+  }
+</style>
