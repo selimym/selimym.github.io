@@ -69,8 +69,12 @@ test.describe('Chip hover panel', () => {
     await expect(page.locator('#chip-panel')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  test('inactive blocks (CPU) do not have an overlay rect', async ({ page }) => {
-    const cpuOverlay = page.locator('.chip-overlay[data-project="cpu"]');
-    await expect(cpuOverlay).toHaveCount(0);
+  test('hovering CPU shows chip design article panel', async ({ page }) => {
+    await page.locator('.chip-overlay[data-project="cpu"]').hover();
+    await expect(page.locator('#cp-title')).toHaveText('Designing Circuits with EDA');
+    await expect(page.locator('#cp-link')).toHaveAttribute(
+      'href',
+      'https://www.asianometry.com/p/designing-billions-of-circuits-with'
+    );
   });
 });

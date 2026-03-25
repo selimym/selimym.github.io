@@ -355,6 +355,10 @@
         <text x="372" y="389" text-anchor="middle" font-size="4.5" class="lbl" opacity="0.55">SEP · ANTI-ROLLBACK</text>
 
         <!-- ── INTERACTIVE OVERLAY RECTS ── -->
+        <rect class="chip-overlay" data-project="cpu"     role="button" tabindex="0"
+          x="68"  y="68"  width="115" height="115"
+          fill="url(#shimmer-grad)"
+          aria-label="CPU block — chip design article"/>
         <rect class="chip-overlay" data-project="neural"  role="button" tabindex="0"
           x="348" y="68"  width="104" height="115"
           fill="url(#shimmer-grad)"
@@ -402,7 +406,7 @@
 
   .chip-panel {
     position: absolute;
-    right: calc(100% - 16px);
+    left: 0;
     top: 0;
     transform: translateY(-50%) translateX(12px);
     width: 200px;
@@ -477,6 +481,12 @@
       desc: 'A game about data surveillance and privacy.',
       url: 'https://selimym.github.io/data_privacy_distopia',
     },
+    cpu: {
+      tag: 'CPU · EXTERNAL ARTICLE',
+      title: 'Designing Circuits with EDA',
+      desc: 'More background about what I do.',
+      url: 'https://www.asianometry.com/p/designing-billions-of-circuits-with',
+    },
   };
 
   const panel    = document.getElementById('chip-panel')!;
@@ -497,11 +507,13 @@
       link.style.display = 'none';
     }
 
-    // Vertically align panel with the center of the hovered block
+    // Position panel next to the hovered block
     const wrapperBounds = wrapper.getBoundingClientRect();
     const blockBounds   = rectEl.getBoundingClientRect();
-    const blockCenterY  = blockBounds.top + blockBounds.height / 2 - wrapperBounds.top;
-    panel.style.top = `${blockCenterY}px`;
+    const blockCenterY  = blockBounds.top  + blockBounds.height / 2 - wrapperBounds.top;
+    const panelLeft     = blockBounds.left - wrapperBounds.left - panel.offsetWidth - 8;
+    panel.style.top  = `${blockCenterY}px`;
+    panel.style.left = `${panelLeft}px`;
 
     panel.classList.add('chip-panel--visible');
     panel.setAttribute('aria-hidden', 'false');
