@@ -1,0 +1,54 @@
+---
+const skillGroups = [
+  {
+    label: 'Languages',
+    skills: ['Python', 'SQL', 'Java'],
+  },
+  {
+    label: 'Backend',
+    skills: ['FastAPI', 'asyncio', 'Pydantic', 'SQLAlchemy', 'Alembic', 'REST APIs'],
+  },
+  {
+    label: 'AI / LLM',
+    skills: ['LangGraph', 'RAG', 'ChromaDB', 'LangChain', 'PyTorch', 'scikit-learn'],
+  },
+  {
+    label: 'Infrastructure',
+    skills: ['PostgreSQL', 'Redis', 'Docker', 'Linux', 'Git', 'GitHub Actions', 'Jenkins'],
+  },
+  {
+    label: 'Quality',
+    skills: ['pytest', 'mypy', 'ruff', 'black', 'Playwright', 'Vitest'],
+  },
+];
+---
+
+<section id="skills" class="py-24 px-6 max-w-5xl mx-auto">
+  <div class="reveal">
+    <div class="flex items-center gap-3 mb-12">
+      <span class="text-xs font-mono text-accent/70 uppercase tracking-widest">Skills</span>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    {skillGroups.map((group) => (
+      <div class="reveal flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+        <span class="text-xs font-mono text-muted/60 uppercase tracking-widest w-28 flex-shrink-0">
+          {group.label}
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {group.skills.map((skill) => (
+            <span class="skill-chip">{skill}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .skill-chip {
+    @apply text-sm px-3 py-1.5 rounded-lg bg-surface border border-border text-muted hover:border-accent/40 hover:text-text transition-colors cursor-default font-mono;
+  }
+</style>

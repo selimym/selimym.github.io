@@ -1,0 +1,156 @@
+---
+const projects = [
+  {
+    id: 'text2sql',
+    title: 'Text2SQL RAG Pipeline',
+    subtitle: 'LLM-backed natural language to SQL',
+    description:
+      'Dual-retriever RAG architecture (ChromaDB) for schema context and few-shot SQL examples. Two-pass draft/refine pipeline reduces hallucination on complex multi-table queries. Three interchangeable pipeline variants behind a shared async FastAPI interface.',
+    highlights: [
+      'LangGraph state machine, ReAct agent, and deterministic baseline; all interchangeable',
+      'Offline eval harness benchmarked against the Spider dataset',
+      'Provider-agnostic LLM integration (Anthropic / OpenAI)',
+    ],
+    tags: ['LangGraph', 'RAG', 'FastAPI', 'ChromaDB', 'Python', 'Anthropic'],
+    url: 'https://github.com/selimym/text2sql',
+    liveUrl: null,
+    featured: true,
+  },
+  {
+    id: 'dystopia',
+    title: 'Data Privacy Dystopia',
+    subtitle: 'Serious browser game on surveillance ethics',
+    description:
+      'Play as a government analyst on an intelligence platform. Work starts reasonable and escalates over 6 weeks until the decisions become unconscionable, without any obvious breaking point. 9 different endings based on compliance rate, bot usage, and the choices you make.',
+    tags: ['React', 'Phaser 3', 'Zustand', 'Playwright', 'Vite'],
+    url: 'https://github.com/selimym/data_privacy_distopia',
+    liveUrl: 'https://selimym.github.io/data_privacy_distopia/',
+    featured: false,
+  },
+  {
+    id: 'urlshortener',
+    title: 'URL Shortener Service',
+    subtitle: 'Concurrency and system design',
+    description:
+      'Redis-buffered click tracking with batch PostgreSQL flushes every 30s. Per-IP rate limiting via Redis INCR. Dedicated race condition test suite that exercises locking strategies and concurrency edge cases.',
+    tags: ['FastAPI', 'Redis', 'PostgreSQL', 'Docker', 'pytest', 'asyncio'],
+    url: 'https://github.com/selimym/url_shortener',
+    liveUrl: null,
+    featured: false,
+  },
+];
+---
+
+<section id="projects" class="py-24 px-6 max-w-5xl mx-auto">
+  <div class="reveal">
+    <div class="flex items-center gap-3 mb-12">
+      <span class="text-xs font-mono text-accent/70 uppercase tracking-widest">Projects</span>
+      <div class="flex-1 h-px bg-border"></div>
+    </div>
+  </div>
+
+  <!-- Bento grid -->
+  <div class="grid md:grid-cols-2 gap-4">
+
+    <!-- Featured project (full width) -->
+    {projects.filter(p => p.featured).map((project) => (
+      <div class="md:col-span-2 reveal bg-surface border border-border rounded-2xl p-6 md:p-8 hover:border-accent/30 transition-all">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">Featured</span>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-text">{project.title}</h3>
+            <p class="text-sm text-muted mt-1">{project.subtitle}</p>
+          </div>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent transition-colors self-start mt-1 whitespace-nowrap"
+          >
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-muted text-sm leading-relaxed mb-5">{project.description}</p>
+
+        {project.highlights && (
+          <ul class="space-y-1.5 mb-5">
+            {project.highlights.map((h) => (
+              <li class="flex gap-2 text-xs text-muted/80">
+                <span class="text-accent mt-0.5 flex-shrink-0">▸</span>
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div class="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- Smaller project cards -->
+    {projects.filter(p => !p.featured).map((project) => (
+      <div class="reveal bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-all flex flex-col">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <h3 class="text-lg font-bold text-text">{project.title}</h3>
+            <p class="text-xs text-muted mt-0.5">{project.subtitle}</p>
+          </div>
+        </div>
+
+        <p class="text-muted text-sm leading-relaxed mb-5 flex-1">{project.description}</p>
+
+        <div class="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+
+        <!-- CTAs: live url gets a prominent button, GitHub is secondary -->
+        <div class="flex gap-3">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent hover:bg-accent-dim text-bg text-xs font-semibold transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Play Now
+            </a>
+          )}
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-border hover:border-accent/40 text-muted hover:text-text text-xs font-medium transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    ))}
+
+  </div>
+</section>
+
+<style>
+  .tag {
+    @apply text-xs font-mono px-2 py-0.5 rounded bg-bg border border-border text-muted/80;
+  }
+</style>
