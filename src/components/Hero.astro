@@ -72,7 +72,7 @@
     </div>
 
     <!-- Right: SoC die floorplan illustration -->
-    <div class="hidden md:flex justify-center items-center relative" id="chip-wrapper">
+    <div class="flex justify-center items-center relative" id="chip-wrapper">
       <div class="chip-halo" aria-hidden="true"></div>
       <!-- Chip hover info panel -->
       <div id="chip-panel" class="chip-panel" aria-hidden="true" role="region" aria-label="Project info">
@@ -83,7 +83,7 @@
       </div>
       <svg
         viewBox="0 0 520 480"
-        class="w-full max-w-[420px] h-auto text-accent" style="opacity:0.55"
+        class="w-full max-w-[300px] sm:max-w-[360px] md:max-w-[420px] h-auto text-accent" style="opacity:0.55"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -376,6 +376,7 @@
           fill="url(#shimmer-grad)"
           aria-label="Data Privacy Dystopia — game"/>
       </svg>
+      <p class="md:hidden absolute bottom-2 left-0 right-0 text-center text-xs font-mono text-muted/40 tracking-widest">tap blocks to explore</p>
     </div>
   </div>
 
@@ -529,7 +530,7 @@
 
     // Mouse
     rect.addEventListener('mouseenter', () => {
-      rect.style.fill = '#F59E0B33';
+      rect.style.fill = '#F59E0B25';
       showPanel(proj, rect);
     });
     rect.addEventListener('mouseleave', (e: MouseEvent) => {
@@ -543,7 +544,7 @@
 
     // Keyboard
     rect.addEventListener('focus', () => {
-      rect.style.fill = '#F59E0B33';
+      rect.style.fill = '#F59E0B25';
       showPanel(proj, rect);
     });
     rect.addEventListener('blur', () => {

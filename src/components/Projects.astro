@@ -99,11 +99,16 @@ const projects = [
 
     <!-- Smaller project cards -->
     {projects.filter(p => !p.featured).map((project) => (
-      <div class="reveal bg-surface border border-border rounded-2xl p-6 hover:border-accent/30 transition-all flex flex-col">
+      <div class={`reveal bg-surface border rounded-2xl p-6 transition-all flex flex-col ${project.id === 'dystopia' ? 'border-amber-500/20 hover:border-amber-500/40' : 'border-border hover:border-accent/30'}`}>
         <div class="flex items-start justify-between gap-4 mb-3">
           <div>
-            <h3 class="text-lg font-bold text-text">{project.title}</h3>
-            <p class="text-xs text-muted mt-0.5">{project.subtitle}</p>
+            <div class="flex items-center gap-2 mb-1.5">
+              <h3 class="text-lg font-bold text-text">{project.title}</h3>
+              {project.id === 'dystopia' && (
+                <span class="text-xs font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 whitespace-nowrap">9 endings</span>
+              )}
+            </div>
+            <p class="text-xs text-muted">{project.subtitle}</p>
           </div>
         </div>
 
