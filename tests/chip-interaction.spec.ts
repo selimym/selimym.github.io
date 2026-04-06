@@ -58,7 +58,7 @@ test.describe('Chip hover panel', () => {
     await expect(page.locator('#cp-title')).toHaveText('Data Privacy Dystopia');
     await expect(page.locator('#cp-link')).toHaveAttribute(
       'href',
-      'https://selimym.github.io/data_privacy_distopia'
+      'https://selimym.github.io/data_privacy_dystopia'
     );
   });
 
